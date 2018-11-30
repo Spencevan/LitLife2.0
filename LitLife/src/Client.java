@@ -5,10 +5,22 @@ import java.util.Scanner;
 
 public class Client {
 	
-	public static void ageEvent() throws IOException {
+	public static void ageEvent(Life user) throws IOException {
 		String[] events = new String[10];
-		BufferedReader inFile1 = new BufferedReader(new FileReader(new File ("names.txt")));
+		Random rand = new Random();
 		
+		//BufferedReader inFile1 = new BufferedReader(new FileReader(new File ("names.txt")));
+		if(rand.nextInt(9) < 4) {
+			if(user.getAge() < 7)
+				System.out.println("\n" + events[rand.nextInt(4)]);
+		}
+		
+		if(user.getAge() == 6)
+			System.out.println("\nYou started elementary school.");
+		else if (user.getAge() == 11)
+			System.out.println("\nYou begin attending Grover Cleveland Middle School.");
+		else if (user.getAge() == 14)
+			System.out.println("\nYou start your journey at the place of possiblities, James Caldwell High School.");
 		
 	}
 	
@@ -18,10 +30,12 @@ public class Client {
 		
 		System.out.println("\n" + user.getName());
 		System.out.println("Age: " + user.getAge());
-		System.out.println("Money: " + money);
+		System.out.println("Money: $" + money);
 		System.out.println("Looks: " + user.getLooks());
 		System.out.println("Smarts: " + user.getSmarts());
 		System.out.println("Death %: " + user.getDeath());
+		
+		ageEvent(user);
 		
 		System.out.println("\n1. Age");
 		System.out.println("2. Kill yourself.");
@@ -30,8 +44,8 @@ public class Client {
 		choice = scan.nextInt();
 		
 		if(choice ==1) {
-			user.setAge(1);	
-			ageEvent();
+			user.setAge(1);
+			
 		} 
 		else if (choice == 2) {
 			dead = true;

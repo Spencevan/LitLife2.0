@@ -20,7 +20,7 @@ public class Life {
 		age = a;
 		looks = rand.nextInt(100);
 		smarts = rand.nextInt(100);
-		death = 0;
+		death = rand.nextInt(25);
 	}
 	
 	public String getName() {
