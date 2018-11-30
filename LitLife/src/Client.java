@@ -8,7 +8,7 @@ public class Client {
 	public static void ageEvent(Life user) throws IOException {
 		String[] events = new String[10];
 		Random rand = new Random();
-		//This is a test
+		
 		//BufferedReader inFile1 = new BufferedReader(new FileReader(new File ("names.txt")));
 		if(rand.nextInt(9) < 4) {
 			if(user.getAge() < 7)
@@ -24,13 +24,14 @@ public class Client {
 		
 	}
 	
-	public static boolean menu(Life user, Life[] parents, int money, boolean dead) throws IOException {
+	public static boolean menu(Life user, Life[] parents, boolean dead) throws IOException {
 		int choice;
 		Scanner scan = new Scanner(System.in);
+		boolean studied = false;
 		
 		System.out.println("\n" + user.getName());
 		System.out.println("Age: " + user.getAge());
-		System.out.println("Money: $" + money);
+		System.out.println("y: $" + user.getMoney());
 		System.out.println("Looks: " + user.getLooks());
 		System.out.println("Smarts: " + user.getSmarts());
 		System.out.println("Death %: " + user.getDeath());
@@ -38,26 +39,61 @@ public class Client {
 		ageEvent(user);
 		
 		System.out.println("\n1. Age");
-		System.out.println("2. Kill yourself.");
+		System.out.println("2. Scholastics and Occupation");
+		System.out.println("3. Relationships");
+		System.out.println("4. Activities");
+		System.out.println("5. Kill yourself.");
 		System.out.print("\nEnter your choice: ");
 		
 		choice = scan.nextInt();
 		
 		if(choice ==1) {
-			user.setAge(1);
-			
+			studied = false;
+			user.setAge();
 		} 
-		else if (choice == 2) {
+		else if (choice == 2)
+			school(user, studied);
+		else if (choice == 3)
+			relationships();
+		else if (choice == 4)
+			activities();
+		else if (choice == 5) {
 			dead = true;
 		}
 		
 		return dead;
 	}
 	
+	public static void school(Life user, boolean studied) {
+		int choice;
+		Random rand = new Random();
+		Scanner k = new Scanner(System.in);
+		
+		if (user.getAge() < 19 ) {
+			System.out.println("\n1. Study harder");
+			System.out.println("2. Drop out");
+			choice = k.nextInt();
+			
+			
+			if ((choice ==1) && (studied == false)) {
+				studied = true;
+				
+			}
+		}
+	}
+	
+	public static void relationships() {
+		
+	}
+	
+	public static void activities() {
+		
+	}
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader inFile = new BufferedReader(new FileReader(new File ("names.txt")));
 		Random rand = new Random();
-		int age, money = 0;
+		int age;
 		String first, last;
 		String[] names = new String[30];
 		Life user;
@@ -77,7 +113,7 @@ public class Client {
 		
 		//Makes a new first name and makes and age at least 18 for the dad and creates that object
 		first = names[rand.nextInt(8)];
-		age = rand.nextInt(40);
+		age = rand.nextInt(50);
 		while (age < 17)
 			age += rand.nextInt(5); 
 		
@@ -97,7 +133,7 @@ public class Client {
 		
 		//MAIN MENU CALL - menu returns boolean and runs until games over
 		while(dead == false) {
-			dead = menu(user, parents, money, dead);
+			dead = menu(user, parents, dead);
 		}
 		
 		System.out.println("\nYou have died.");

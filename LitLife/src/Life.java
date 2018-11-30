@@ -5,6 +5,7 @@ public class Life {
 	private String first, last, occupation;
 	private int looks, smarts, death, age;
 	private int[] relationships;
+	private double money;
 	
 	public Life() {
 		first = "FIRST";
@@ -21,6 +22,7 @@ public class Life {
 		looks = rand.nextInt(100);
 		smarts = rand.nextInt(100);
 		death = rand.nextInt(25);
+		money = 0;
 	}
 	
 	public String getName() {
@@ -29,10 +31,6 @@ public class Life {
 	
 	public int getAge() {
 		return age;
-	}
-	
-	public void setAge(int a) {
-		age += a;
 	}
 	
 	public int getLooks() {
@@ -45,6 +43,31 @@ public class Life {
 	
 	public int getDeath() {
 		return death;
+	}
+	
+	public double getMoney() {
+		return money;
+	}
+	
+	
+	public void setDeath(int d) {
+		death += d;
+	}
+	
+	public void setAge() {
+		age ++;
+	}
+	
+	public void setSmarts(int s) {
+		smarts += s;
+	}
+	
+	public void Looks(int l) {
+		looks += l;
+	}
+	
+	public void setMoney(double m) {
+		money += m;
 	}
 
 }
