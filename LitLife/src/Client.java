@@ -8,7 +8,7 @@ public class Client {
 	public static void ageEvent(Life user) throws IOException {
 		String[] events = new String[10];
 		Random rand = new Random();
-		
+		//This is a test
 		//BufferedReader inFile1 = new BufferedReader(new FileReader(new File ("names.txt")));
 		if(rand.nextInt(9) < 4) {
 			if(user.getAge() < 7)
