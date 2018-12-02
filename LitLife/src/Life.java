@@ -69,5 +69,40 @@ public class Life {
 	public void setMoney(double m) {
 		money += m;
 	}
+	
+	public void changeStat(String change) {
+		if(change.charAt(0) == '+') {
+			if (change.charAt(1) == 'l') {
+				looks += Integer.parseInt(change.substring(2));
+			}
+			else if (change.charAt(1) == 's') {
+				smarts += Integer.parseInt(change.substring(2));
+			}
+			else if (change.charAt(1) == 'd') {
+				death += Integer.parseInt(change.substring(2));
+			}
+			else if (change.charAt(1) == 'm') {
+				money += Integer.parseInt(change.substring(2));
+			}
+			
+		}
+		
+		if(change.charAt(0) == '-') {
+			if (change.charAt(1) == 'l') {
+				looks -= Integer.parseInt(change.substring(2));
+			}
+			else if (change.charAt(1) == 's') {
+				smarts -= Integer.parseInt(change.substring(2));
+			}
+			else if (change.charAt(1) == 'd') {
+				death -= Integer.parseInt(change.substring(2));
+			}
+			else if (change.charAt(1) == 'm') {
+				money -= Integer.parseInt(change.substring(2));
+			}
+		}
+		
+		
+	}
 
 }

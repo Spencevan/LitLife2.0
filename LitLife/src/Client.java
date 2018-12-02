@@ -8,11 +8,18 @@ public class Client {
 	public static void ageEvent(Life user) throws IOException {
 		String[] events = new String[10];
 		Random rand = new Random();
-		
+		int r;
+		String change = "";
 		//BufferedReader inFile1 = new BufferedReader(new FileReader(new File ("names.txt")));
 		if(rand.nextInt(9) < 4) {
-			if(user.getAge() < 7)
-				System.out.println("\n" + events[rand.nextInt(4)]);
+			if(user.getAge() < 7) {
+				r = rand.nextInt(4);
+				System.out.println("\n" + events[r]);
+				change = events[r+1];
+				change = "+l10";
+			}
+			
+			user.changeStat(change);
 		}
 		
 		if(user.getAge() == 6)
