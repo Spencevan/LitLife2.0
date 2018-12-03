@@ -1,3 +1,9 @@
+/* Evan Ordona
+ * AP Computer Science
+ * Nov 29, 2018
+ * LitLife */
+
+
 
 import java.io.*;
 import java.util.Random;
@@ -10,13 +16,19 @@ public class Client {
 		Random rand = new Random();
 		int r;
 		String change = "";
-		//BufferedReader inFile1 = new BufferedReader(new FileReader(new File ("names.txt")));
+		BufferedReader inFile1 = new BufferedReader(new FileReader(new File ("ageEvents.txt")));
+		for (int i=0; i<10; i++){
+			events[i] = inFile1.readLine();
+		}
+		
 		if(rand.nextInt(9) < 4) {
 			if(user.getAge() < 7) {
-				r = rand.nextInt(4);
+				r = rand.nextInt(7);
+				while((r % 2) != 0)
+					r = rand.nextInt(7);
+				
 				System.out.println("\n" + events[r]);
 				change = events[r+1];
-				change = "+l10";
 			}
 			
 			user.changeStat(change);

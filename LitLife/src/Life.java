@@ -1,3 +1,8 @@
+/* Evan Ordona
+ * AP Computer Science
+ * Nov 29, 2018
+ * LitLife */
+
 
 import java.util.Random;
 
