@@ -1,0 +1,50 @@
+0 Nothing
+
+[0-10 CALDWELL UNIVERSITY LEVEL]
+
+1 High School
+2 Comp Sci
+3 Batman
+4 Bio
+5 Art
+6 Homosexual Studies
+7 Pre Med
+8 Pre Law
+9 Pre Dent
+10 Math
+
+[11-20 RUTGERS LEVEL]
+
+11 High School
+12 Comp Sci
+13 Batman
+14 Bio
+15 Art
+16 Homosexual Studies
+17 Pre Med
+18 Pre Law
+19 Pre Dent
+20 Math
+
+[21-30 HARVARD LEVEL]
+
+21 High School
+22 Comp Sci
+23 Batman
+24 Bio
+25 Art
+26 Homosexual Studies
+27 Pre Med
+28 Pre Law
+29 Pre Dent
+30 Math
+
+[FURTHER EDUCATION]
+
+31 Law
+32 Med
+33 Dent
+
+
+[ALL MAJORS] 
+Comp Sci, Batmanology, Bio, Art, Homosexual Studies, Pre-Med, Pre-Law, Pre-Dent, Math
