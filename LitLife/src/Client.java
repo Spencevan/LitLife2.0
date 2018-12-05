@@ -1,4 +1,4 @@
-/* Evan Ordona
+ /* Evan Ordona
  * AP Computer Science
  * Nov 29, 2018
  * LitLife */
@@ -21,11 +21,10 @@ public class Client {
 			events[i] = inFile1.readLine();
 		}
 		
+		
 		if(rand.nextInt(9) < 4) {
-			if(user.getAge() < 7) {
-				r = rand.nextInt(7);
-				while((r % 2) != 0)
-					r = rand.nextInt(7);
+			if((user.getAge() < 7) && (user.getAge() > 1)) {
+				r = rand.nextInt(4) * 2;
 				
 				System.out.println("\n" + events[r]);
 				change = events[r+1];
@@ -48,14 +47,24 @@ public class Client {
 		Scanner scan = new Scanner(System.in);
 		boolean studied = false;
 		
+		if (user.getAge() == 6)
+			user.setInSchool(true);
+		
+		if (user.getAge() == 19) {
+			if (user.getInSchool())
+				user.setEducation(1);
+			
+			user.setInSchool(false);
+		}
+		
 		System.out.println("\n" + user.getName());
 		System.out.println("Age: " + user.getAge());
-		System.out.println("y: $" + user.getMoney());
+		System.out.println("Money: $" + user.getMoney());
 		System.out.println("Looks: " + user.getLooks());
 		System.out.println("Smarts: " + user.getSmarts());
 		System.out.println("Death %: " + user.getDeath());
-		
-		ageEvent(user);
+	
+		//ageEvent(user);
 		
 		System.out.println("\n1. Age");
 		System.out.println("2. Scholastics and Occupation");
@@ -84,19 +93,97 @@ public class Client {
 	}
 	
 	public static void school(Life user, boolean studied) {
-		int choice;
+		int choice, officer;
 		Random rand = new Random();
 		Scanner k = new Scanner(System.in);
-		
-		if (user.getAge() < 19 ) {
-			System.out.println("\n1. Study harder");
-			System.out.println("2. Drop out");
+		if (user.getAge() < 6) {
+			System.out.println("\nYou are not in school yet!");
+		} else if (user.getInSchool()) {
+				System.out.println("\n1. Study harder");
+				System.out.println("2. Drop out");
+				System.out.print("Enter your choice:  ");
+				choice = k.nextInt();		
+				
+				if ((choice ==1) && (studied == false)) {
+					studied = true;
+					user.setSmarts(rand.nextInt(3));
+				} else if (choice == 2) {
+					user.setInSchool(false);
+					System.out.println("You have dropped out of school.");
+				}
+		}
+		else {
+			System.out.println("\n1. Education");
+			System.out.println("2. Jobs");
+			System.out.println("3. Military");
+			System.out.print("Enter your choice:  ");
 			choice = k.nextInt();
 			
-			
-			if ((choice ==1) && (studied == false)) {
-				studied = true;
+			if (choice == 1) {
+				//Leedle Leedle Lee
+			} else if (choice == 2) {
 				
+			} else if (choice == 3) {
+				System.out.println("\n1. Army");
+				System.out.println("2. Navy");
+				System.out.println("3. Air Force");
+				System.out.println("4. Marines");
+				System.out.println("5. Coast Guard");
+				System.out.print("Enter your choice:  ");
+				choice = k.nextInt();
+				
+				System.out.println("\n1. Enlist in the military  ");
+				System.out.println("2. Become an officer  ");
+				System.out.print("Enter your choice:  ");
+				officer = k.nextInt();
+				
+				if ((officer == 2) && (user.getSmarts() > 64)) {
+					if (choice == 1) {
+						System.out.println("Congratulations! You are now an Army officer and will be paid $35,664 a year.");
+						user.setOccupation("Army Officer");
+						user.setSalary(35664);
+					} else if (choice == 2) {
+						System.out.println("Congratulations! You are now a Naval officer and will be paid $35,664 a year.");
+						user.setOccupation("Naval Officer");
+						user.setSalary(35664);
+					} else if (choice == 3) {
+						System.out.println("Congratulations! You are now an Air Force officer and will be paid $35,664 a year.");
+						user.setOccupation("Air Force Officer");
+						user.setSalary(35664);
+					} else if (choice == 4) {
+						System.out.println("Congratulations! You are now a Marines officer and will be paid $35,664 a year.");
+						user.setOccupation("Marines Officer");
+						user.setSalary(35664);
+					} else if (choice == 5) {
+						System.out.println("Congratulations! You are now a Coast Guard officer and will be paid $35,664 a year.");
+						user.setOccupation("Coast Guard Officer");
+						user.setSalary(35664);
+					}
+				} else if (officer == 2) {
+					System.out.println("Unfortunately your application for becoming an officer was denied.");
+				} else if (officer == 1) {
+					if (choice == 1) {
+						System.out.println("Congratulations! You are now an Army solider and will be paid $27,985 a year.");
+						user.setOccupation("Army Soldier");
+						user.setSalary(27985);
+					} else if (choice == 2) {
+						System.out.println("Congratulations! You are now a Navy sailor and will be paid $27,985 a year.");
+						user.setOccupation("Navy Sailor");
+						user.setSalary(27985);
+					} else if (choice == 3) {
+						System.out.println("Congratulations! You are now an Air Force Pilot and will be paid $27,985 a year.");
+						user.setOccupation("Air Force Pilot");
+						user.setSalary(27985);
+					} else if (choice == 4) {
+						System.out.println("Congratulations! You are now a Marine and will be paid $27,985 a year.");
+						user.setOccupation("Marine");
+						user.setSalary(27985);
+					} else if (choice == 5) {
+						System.out.println("Congratulations! You are now a Coast Guard Sailor and will be paid $27,985 a year.");
+						user.setOccupation("Coast Guard Sailor");
+						user.setSalary(27985);
+					}
+				}
 			}
 		}
 	}
