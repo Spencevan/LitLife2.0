@@ -11,52 +11,37 @@ import java.util.Scanner;
 
 public class Client {
 	
-	public static void ageEvent(Life user) throws IOException {
-		String[] events = new String[10];
-		Random rand = new Random();
-		int r;
-		String change = "";
-		BufferedReader inFile1 = new BufferedReader(new FileReader(new File ("ageEvents.txt")));
-		for (int i=0; i<10; i++){
-			events[i] = inFile1.readLine();
+	public static void ageEvent(Life user) {
+		user.setMoney(user.getSalary());
+		
+		if (user.getAge() == 6) {
+			user.setInSchool(true);
+			System.out.println("You have started elementary school.");
 		}
 		
-		
-		if(rand.nextInt(9) < 4) {
-			if((user.getAge() < 7) && (user.getAge() > 1)) {
-				r = rand.nextInt(4) * 2;
-				
-				System.out.println("\n" + events[r]);
-				change = events[r+1];
-			}
+		if (user.getAge() == 19) {
+			if (user.getInSchool())
+				user.setEducation(1);
 			
-			user.changeStat(change);
+			System.out.println("You have graduated high school.");
+			user.setInSchool(false);
 		}
 		
-		if(user.getAge() == 6)
-			System.out.println("\nYou started elementary school.");
-		else if (user.getAge() == 11)
-			System.out.println("\nYou begin attending Grover Cleveland Middle School.");
-		else if (user.getAge() == 14)
-			System.out.println("\nYou start your journey at the place of possiblities, James Caldwell High School.");
+		if (user.getEducation() > 33)
+			user.setEducation(user.getEducation() + 1);
 		
+		if (user.getEducation() == 38) {
+			user.setEducation(user.getDegree());
+			user.setInSchool(false);
+			System.out.println("You have graduated from college! Welcome to the real world.");
+		}
 	}
 	
 	public static boolean menu(Life user, Life[] parents, boolean dead) throws IOException {
 		int choice;
 		Scanner scan = new Scanner(System.in);
 		boolean studied = false;
-		
-		if (user.getAge() == 6)
-			user.setInSchool(true);
-		
-		if (user.getAge() == 19) {
-			if (user.getInSchool())
-				user.setEducation(1);
 			
-			user.setInSchool(false);
-		}
-		
 		System.out.println("\n" + user.getName());
 		System.out.println("Age: " + user.getAge());
 		System.out.println("Money: $" + user.getMoney());
@@ -64,7 +49,6 @@ public class Client {
 		System.out.println("Smarts: " + user.getSmarts());
 		System.out.println("Death %: " + user.getDeath());
 	
-		//ageEvent(user);
 		
 		System.out.println("\n1. Age");
 		System.out.println("2. Scholastics and Occupation");
@@ -78,6 +62,7 @@ public class Client {
 		if(choice ==1) {
 			studied = false;
 			user.setAge();
+			ageEvent(user);
 		} 
 		else if (choice == 2)
 			school(user, studied);
@@ -92,7 +77,7 @@ public class Client {
 		return dead;
 	}
 	
-	public static void school(Life user, boolean studied) {
+	public static void school(Life user, boolean studied) {		
 		int choice, officer;
 		Random rand = new Random();
 		Scanner k = new Scanner(System.in);
@@ -120,7 +105,98 @@ public class Client {
 			choice = k.nextInt();
 			
 			if (choice == 1) {
-				//Leedle Leedle Lee
+				System.out.println("\n1. GED");
+				System.out.println("2. University");
+				System.out.println("3. Medical School");
+				System.out.println("4. Law School");
+				System.out.println("5. Dentistry School");
+				System.out.print("Enter your choice  ");
+				choice = k.nextInt();
+				
+				if (choice == 1) { 
+					if ((user.getSmarts() > 9) && (user.getEducation() == 0) && (user.getAge() > 17)) {
+						System.out.println("\nCongratulations! You now have your GED. It cost $1,000.");
+						user.setEducation(1);
+						user.setMoney(-1000);
+					} else if (user.getEducation() == 1) {
+						System.out.println("\nYou already have your GED.");
+					} else if ((user.getEducation() == 0) && (user.getSmarts() < 10)) {
+						System.out.println("\nYou failed to pass your GED test. Dummy!");
+					} else {
+						System.out.println("You must be 18 or older to get your GED");
+					}
+				} else if ((choice == 2) && (user.getEducation() == 1)) {
+					System.out.println("\n1. Caldwell University");
+					System.out.println("2. Rutgers University");
+					System.out.println("3. Harvard University");
+					System.out.print("Enter your choice:  ");
+					choice = k.nextInt();
+					
+					if (choice == 1) {
+						if (user.getSmarts() > 24) {
+							System.out.println("You have been accepted into Caldwell University. Your tuition will be $xxxx.");
+							user.setInSchool(true);
+							user.setEducation(34);
+							user.setMoney(0);
+						} else {
+							System.out.println("Your application to Caldwell University was denied.");
+						}
+					} else if (choice == 2) {
+						if (user.getSmarts() > 49) {
+							System.out.println("You have been accepted into Rutgers University. Your tuition will be $xxxx.");
+							user.setInSchool(true);
+							user.setEducation(34);
+							user.setMoney(0);
+						} else {
+							System.out.println("Your application to Caldwell University was denied.");
+						}
+					} else if (choice == 3) {
+						if (user.getSmarts() > 89) {
+							System.out.println("You have been accepted into Harvard University. Your tuition will be $xxxx.");
+							user.setInSchool(true);
+							user.setEducation(34);
+							user.setMoney(0);
+						} else {
+							System.out.println("Your application to Harvard University was denied.");
+						}
+					}
+				} else if (choice == 2) {
+					System.out.println("You must get your GED before going to college.");
+				} else if (choice == 3) {
+					if ((user.getEducation() ==  7) || (user.getEducation() == 17) || (user.getEducation() == 27)) {
+						if (user.getSmarts() > 79) {
+							System.out.println("You have been accepted to med school. Your tuition will be $xxxx.");
+							user.setInSchool(true);
+						} else {
+							System.out.println("Your application to Med School was denied.");
+						}
+					} else {
+						System.out.println("You are not qualified to attend Med School.");
+					}
+				} else if (choice == 4) {
+					if ((user.getEducation() ==  8) || (user.getEducation() == 18) || (user.getEducation() == 28)) {
+						if (user.getSmarts() > 79) {
+							System.out.println("You have been accepted to Law School. Your tuition will be $xxxx.");
+							user.setInSchool(true);
+						} else {
+							System.out.println("Your application to Law School was denied.");
+						}
+					} else {
+						System.out.println("You are not qualified to attend Law School.");
+					}
+				} else if (choice == 5) {
+					if ((user.getEducation() ==  9) || (user.getEducation() == 19) || (user.getEducation() == 29)) {
+						if (user.getSmarts() > 79) {
+							System.out.println("You have been accepted to Dentistry School. Your tuition will be $xxxx.");
+							user.setInSchool(true);
+						} else {
+							System.out.println("Your application to Dentistry School was denied.");
+						}
+					} else {
+						System.out.println("You are not qualified to attend Dentistry School.");
+					}
+				}
+				
 			} else if (choice == 2) {
 				
 			} else if (choice == 3) {

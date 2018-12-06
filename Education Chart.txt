@@ -45,6 +45,8 @@
 32 Med
 33 Dent
 
+34 In-College
+
 
 [ALL MAJORS] 
 Comp Sci, Batmanology, Bio, Art, Homosexual Studies, Pre-Med, Pre-Law, Pre-Dent, Math
