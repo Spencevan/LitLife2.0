@@ -6,13 +6,14 @@
 
 
 import java.io.*;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Client {
 	
 	public static void ageEvent(Life user) {
 		user.setMoney(user.getSalary());
+		
+		user.setMoney(-(user.getMoney() * .20));
 		
 		if (user.getAge() == 6) {
 			user.setInSchool(true);
@@ -30,10 +31,19 @@ public class Client {
 		if (user.getEducation() > 33)
 			user.setEducation(user.getEducation() + 1);
 		
+		if (user.getEducation() > 38)
+			user.setEducation(user.getEducation() + 1);
+		
 		if (user.getEducation() == 38) {
 			user.setEducation(user.getDegree());
 			user.setInSchool(false);
 			System.out.println("You have graduated from college! Welcome to the real world.");
+		}
+		
+		if (user.getEducation() == 42) {
+			user.setEducation(user.getDegree());
+			user.setInSchool(false);
+			System.out.println("You have graduated from Professional School! Welcome to the really real world.");
 		}
 	}
 	
@@ -134,28 +144,28 @@ public class Client {
 					
 					if (choice == 1) {
 						if (user.getSmarts() > 24) {
-							System.out.println("You have been accepted into Caldwell University. Your tuition will be $xxxx.");
+							System.out.println("You have been accepted into Caldwell University. Your tuition will be $31,200.");
 							user.setInSchool(true);
 							user.setEducation(34);
-							user.setMoney(0);
+							user.setMoney(-124800);
 						} else {
 							System.out.println("Your application to Caldwell University was denied.");
 						}
 					} else if (choice == 2) {
 						if (user.getSmarts() > 49) {
-							System.out.println("You have been accepted into Rutgers University. Your tuition will be $xxxx.");
+							System.out.println("You have been accepted into Rutgers University. Your tuition will be $14,131.");
 							user.setInSchool(true);
 							user.setEducation(34);
-							user.setMoney(0);
+							user.setMoney(-56524);
 						} else {
 							System.out.println("Your application to Caldwell University was denied.");
 						}
 					} else if (choice == 3) {
 						if (user.getSmarts() > 89) {
-							System.out.println("You have been accepted into Harvard University. Your tuition will be $xxxx.");
+							System.out.println("You have been accepted into Harvard University. Your tuition will be $45,278.");
 							user.setInSchool(true);
 							user.setEducation(34);
-							user.setMoney(0);
+							user.setMoney(-181112);
 						} else {
 							System.out.println("Your application to Harvard University was denied.");
 						}
@@ -165,8 +175,10 @@ public class Client {
 				} else if (choice == 3) {
 					if ((user.getEducation() ==  7) || (user.getEducation() == 17) || (user.getEducation() == 27)) {
 						if (user.getSmarts() > 79) {
-							System.out.println("You have been accepted to med school. Your tuition will be $xxxx.");
+							System.out.println("You have been accepted to med school. Your tuition will be $34,592.");
 							user.setInSchool(true);
+							user.setEducation(39);
+							user.setMoney(-69184);
 						} else {
 							System.out.println("Your application to Med School was denied.");
 						}
@@ -176,8 +188,10 @@ public class Client {
 				} else if (choice == 4) {
 					if ((user.getEducation() ==  8) || (user.getEducation() == 18) || (user.getEducation() == 28)) {
 						if (user.getSmarts() > 79) {
-							System.out.println("You have been accepted to Law School. Your tuition will be $xxxx.");
+							System.out.println("You have been accepted to Law School. Your tuition will be $39,612.");
 							user.setInSchool(true);
+							user.setEducation(39);
+							user.setMoney(-79224);
 						} else {
 							System.out.println("Your application to Law School was denied.");
 						}
@@ -187,8 +201,10 @@ public class Client {
 				} else if (choice == 5) {
 					if ((user.getEducation() ==  9) || (user.getEducation() == 19) || (user.getEducation() == 29)) {
 						if (user.getSmarts() > 79) {
-							System.out.println("You have been accepted to Dentistry School. Your tuition will be $xxxx.");
+							System.out.println("You have been accepted to Dentistry School. Your tuition will be $67,399.");
 							user.setInSchool(true);
+							user.setEducation(39);
+							user.setMoney(-134278);
 						} else {
 							System.out.println("Your application to Dentistry School was denied.");
 						}
